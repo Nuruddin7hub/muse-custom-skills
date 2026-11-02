@@ -1,0 +1,23 @@
+name: arduino_breadboard_prototyping
+title: Arduino Breadboard Prototyping
+description: Guide a breadboard Arduino build from an inventoried parts list and one verified power source to a tested circuit.
+category: Learning and customization
+include_in_prompt: false
+skill_improvement:
+  managed: true
+  status: active
+  evidence_handles:
+  - message:assistant-msg-d3bd581a-9f89-49e4-a4b6-1c32ebd7a1fe
+  - message:e3b64d41-33c0-475d-9608-9d543c926489
+  - message:assistant-msg-fb41f93e-95a9-4b8d-92fa-177f59b7deab
+  - message:8554fbd7-2d56-433d-943a-48321b289b00
+  - message:assistant-msg-bed3941a-6038-418e-8a69-65ee7c5b5cff
+  measurement:
+    proxy_metric_id: objective_success_rate
+    success_criterion: Later Arduino breadboard builds proceed stage by stage with no user correction that the power source was wrong, that a second source was assumed, or that a component pin identity was guessed instead of tested, and no full replan is needed for the same circuit.
+    window_days: 30
+  needs_review: false
+  rationale: On 2026-10-28 the assistant first gave a breadboard power module sim plan, then the user corrected that only one 9V battery with a barrel plug was available and asked for a rethink, and the assistant replanned around the battery into the barrel jack. In the same session the RGB LED identity was also uncertain until the user sent a photo, after which the assistant gave a leg by leg test procedure. The same MB-102 input versus output confusion had already been learned on 2026-10-26, so the lesson was not retained as a reusable method. This skill forces inventory first, one named power entry, USB disconnected before test power, a divider for voltages above 5 volts, and pin testing before full wiring, which directly addresses each correction in the cited messages. No existing skill matched an Arduino breadboard search, and the deterministic suppressed handoff candidates were rejected because they concern objective trigger cadence, not a teachable method.
+  review_after: 2026-11-27T10:43:35.003144+00:00
+  reviewed_at: 2026-10-28T10:43:35.003144+00:00
+  run_id: sirun_e66a473aec8b4486a7e889554e022deb
