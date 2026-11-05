@@ -1,0 +1,26 @@
+name: scheduled_course_item_verification
+title: Scheduled Course Item Verification
+description: Verify each course item against its authoritative page before reporting its time, status, or a missed session.
+category: Learning and customization
+include_in_prompt: false
+skill_improvement:
+  managed: true
+  status: active
+  evidence_handles:
+  - assistant-msg-836a0b36
+  - 57dd67c6
+  - bb31845b
+  - 69c97386
+  - assistant-msg-3089894b
+  - assistant-msg-cd02e6bd
+  - assistant-msg-a81d9897
+  - assistant-msg-901cff46
+  measurement:
+    proxy_metric_id: objective_success_rate
+    success_criterion: Later scheduled course checks report each item only after reading its authoritative page, with no user correction for a merged activity, a wrong AM/PM window, a wrong group, or a drafted missed-session message without explicit evidence.
+    window_days: 30
+  needs_review: false
+  rationale: Two incidents in the same window share one root cause. The assistant drafted a false missed final VR message to a lecturer after merging HSE VR attendance with Module 5 homework, and the user corrected that he had attended VR on 30 Sept in Group 22 and that VR and Module 5 have no correlation. The same day Quiz 3 was reported as 3 to 7 AM, then 3 to 7 PM, then three different windows, before the PM time was verified on the quiz page. Both failures came from reporting a secondary source or a merged record without re-reading the authoritative page for the exact item. Skill searches for ULearn checks, deadline verification, and authoritative source verification found no skill covering this method, and only one learned skill exists so no consolidation applies. This single new skill teaches one item at a time, separate activities, and message drafting only from explicit evidence.
+  review_after: 2026-12-05T06:23:21.421188+00:00
+  reviewed_at: 2026-11-05T06:23:21.421188+00:00
+  run_id: sirun_38f8baf074b9427fac070e115fdc4cc2
