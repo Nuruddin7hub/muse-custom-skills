@@ -1,0 +1,5 @@
+name: "canva_browser_mastery"
+title: "Canva Browser Mastery"
+description: "Design in the Canva web editor by hand for Kind, without any Canva AI generation: templates, text, layers, brand, video, export and browser driving notes."
+category: "Work and knowledge"
+include_in_prompt: true
