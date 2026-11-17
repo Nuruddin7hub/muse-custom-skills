@@ -1,8 +1,10 @@
 # Propagate a Decision to Scheduled Jobs
 
-## Treat a stop decision as a job change
+## Treat a stop or account change as a job change
 
 - Treat words such as stop, retire, suspend, pause, never again, and a channel verdict as a change to scheduled work, not only as a change to the next chat reply.
+
+- Treat a disabled account and a new replacement account as the same kind of change, so a job that still names the old account is stale even when its steps look unchanged.
 
 - Act in the same turn as the decision, before you start the next task, so a job scheduled for the next morning cannot run the old routine overnight.
 
@@ -14,6 +16,8 @@
 
 - Search the related runbook, goal notes, and state files for the stopped wording, such as a score, an audit PDF, or a named channel, and list every file that still contains it.
 
+- Search job definitions and manifests for the old account handle, and list every file that still names it.
+
 - Keep a job that is unrelated to the decision, such as an evening digest or a validation gate, and name it as unchanged in your report.
 
 ## Update the definition, not only the switch
@@ -22,9 +26,21 @@
 
 - Remove the retired steps from the definition, including scoring, building an audit file, attaching that file, and drafting in the retired style.
 
+- Replace the old account handle with the current account in every job definition and manifest reference, and point a timed post at the dated manifest for that day rather than a stale manifest file.
+
 - Replace a retired step with the approved replacement only when the user approved one, and leave the step out when no replacement exists.
 
 - Re-list the jobs with `cron.list` and re-read each changed definition file to confirm the pause or the new wording before you report success.
+
+## Verify a timed post before you promise it
+
+- Before you promise a timed post, confirm the job that fires it is enabled and its next run time matches the promised slot.
+
+- Confirm the job definition names the current account and the dated manifest for that day, and never rely on a job that still names a disabled account.
+
+- Confirm the browser session that will post is signed in as the current account, and if it is signed out or shows a login wall, do not promise the post and tell the user plainly that sign in is needed.
+
+- Re-list the jobs and re-read each changed definition after any rewrite, and only then report the timed post as automatic.
 
 ## Report what changed and what stays live
 

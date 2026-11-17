@@ -1,24 +1,23 @@
 name: scheduled_job_decision_propagation
 title: Propagate Decisions to Scheduled Jobs
-description: When a method, channel, or approach is stopped or retired, update or pause the scheduled jobs and runbooks that still carry it out, so no stale job keeps running the old routine.
+description: When a method, channel, or approach is stopped or retired, or an account is disabled or replaced, update or pause the scheduled jobs and runbooks that still carry it, and verify a timed post job is live and current before you promise it.
 category: Work and knowledge
 include_in_prompt: false
 skill_improvement:
   managed: true
   status: active
   evidence_handles:
-  - message:assistant-msg-310dfd7e-42e7-4cd5-a445-f03cc5125715
-  - message:46921795-634c-443e-8499-a76189137a46
-  - message:assistant-msg-a795184e-e9ee-db98-af42-15b4c60cd014
-  - scheduler_job:motorlist-morning-prospect
-  - scheduler_job:motorlist-outreach-queue
-  - 90e70ad2-ac1a-4803-b2d5-2d9343b178f3
+  - message:cca43e79
+  - message:a4d9a29c
+  - message:assistant-msg-af2d5f9e
+  - message:assistant-msg-a10b4027
+  - message:assistant-msg-e4482e60
   measurement:
     proxy_metric_id: objective_success_rate
-    success_criterion: After a stop or retire decision in chat, no scheduled job runs the retired method or channel within 30 days, and a re-read of each affected job definition shows the retired steps removed rather than only the enabled flag changed.
+    success_criterion: After a stop, retire, or account change, no scheduled job runs the retired method or names the retired account within 30 days, and no timed post is promised without a verified enabled job naming the current account.
     window_days: 30
-  rationale: 'Kind retired the scored-audit approach on 2026-11-05 and the Lazada prospecting channel was stopped, yet the 7am prospect and 9am outreach jobs kept running the old routine and produced 9 new Lazada drafts on 2026-11-06 (message:assistant-msg-a795184e-e9ee-db98-af42-15b4c60cd014). Kind asked why Lazada chatting was still happening (message:46921795-634c-443e-8499-a76189137a46) and the assistant admitted the jobs were written before the decision and never updated or paused after it (message:assistant-msg-310dfd7e-42e7-4cd5-a445-f03cc5125715). I re-read both job definitions this run: motorlist-morning-prospect still instructs scoring listings 1 to 10 and building a watermarked audit PDF, and motorlist-outreach-queue still instructs mentioning the attached watermarked audit, even though both jobs are now paused, so re-enabling them would resume the retired method. No existing skill covers this: skill searches for scheduled jobs, cron pause, and channel-stop prospecting returned only flight tracking, scheduling, and customer outreach, none of which teaches propagating a chat decision into scheduled job definitions. The deterministic suppressed-handoff candidates were rejected because they concern objective trigger cadence, not a teachable method, and the course-verification skill published 2026-11-05 is inside its measurement window and covers a different failure.'
+  rationale: The Instagram publish job still named the banned account and was switched off after the account was disabled on 2026-11-13, so the second 18:40 post was missed and the user asked why it did not post (message:cca43e79). The assistant admitted the job was switched off and stale and still named the banned account (message:assistant-msg-af2d5f9e), the user approved making it automatic (message:a4d9a29c), and the job was rewritten with the new account and switched on (message:assistant-msg-a10b4027). A later automatic run opened a fresh window, hit an Instagram login, and posted nothing (message:assistant-msg-e4482e60). The existing skill covers retired methods but does not treat an account change as a job change and does not require a live enabled-job, current-account, and signed-in-session check before promising a timed post. This update adds that check to the managed skill it already belongs to, rather than creating a second skill.
   needs_review: false
-  review_after: 2026-12-06T06:23:20.415774+00:00
-  reviewed_at: 2026-11-06T06:23:20.415774+00:00
-  run_id: sirun_907ac439324c49ee9d9e9be74b004032
+  review_after: 2026-12-16T06:19:37.800674+00:00
+  reviewed_at: 2026-11-16T06:19:37.800674+00:00
+  run_id: sirun_d2cf25c9890f41baafbe61c1d157d0a1
