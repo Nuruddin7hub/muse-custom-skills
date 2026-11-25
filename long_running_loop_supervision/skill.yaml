@@ -1,0 +1,20 @@
+name: long_running_loop_supervision
+title: Supervise a Long Running Loop
+description: Keep a multi round delegated loop moving until it ships by checking it yourself, spotting a stall early, and resuming it from disk without rebuilding or overwriting finished work.
+category: Work and knowledge
+include_in_prompt: false
+skill_improvement:
+  managed: true
+  status: active
+  evidence_handles:
+  - message:370626e1
+  - message:assistant-msg-34c45308
+  measurement:
+    proxy_metric_id: objective_success_rate
+    success_criterion: Later long running loops show no direction changing fix parked as awaiting the user, every direction changing fix is decided and logged in the run ledger, and no coordinator brief carries a user call flag that the base skill does not state.
+    window_days: 30
+  needs_review: false
+  rationale: 'The Cook skill step 1 says never ask a question after intake, decide, log the decision under Decisions in ROUNDS.md, and keep working. Despite that, the supervisor invented user call flags in every coordinator brief from number 18 onward and parked the thumbnail replacement for four rounds while the critics named it the top fix. The user corrected this on 2026-11-21 (message:370626e1), the assistant admitted the flags were its own invention (message:assistant-msg-34c45308), the correction was rescinded the same turn, and Round 88 then built the thumbnail replacement, the first build since Round 82. The correction was acted on in session only, with no durable rule recording it. Skill search found no other skill covering invented authority limits in delegated briefs, and the managed long_running_loop_supervision skill is the document that governs coordinator briefs, stall handling, and resume, so the decide and log rule belongs there. Other candidates were rejected: the write-block failures are already covered by safe_file_saves published 2026-11-20 and still inside its measurement window, the Outlook 12th consecutive block and the GitHub approval-card timeout need a user action rather than a teachable method, and the handoff suppression and goals_bookkeeping rollups name no concrete method failure.'
+  review_after: 2026-12-21T06:18:52.290524+00:00
+  reviewed_at: 2026-11-21T06:18:52.290524+00:00
+  run_id: sirun_49f991f13d12473f9da922c69ca471ad

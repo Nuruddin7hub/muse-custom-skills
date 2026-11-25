@@ -1,0 +1,22 @@
+name: safe_file_saves
+title: Save Files Safely
+description: Save a file so a failed write cannot empty or corrupt it, and recover from the source of truth when a save fails.
+category: Work and knowledge
+include_in_prompt: false
+skill_improvement:
+  managed: true
+  status: active
+  evidence_handles:
+  - message:18b43c93-ded9-36d5-97ce-4ea526f45ac6
+  - message:9ab8fa8d-bb1f-410b-a3eb-551f24e21692
+  - message:cb795696-ada4-466b-8fab-08c7cec9e83d
+  - message:b3174eee-1a44-3a04-510d-48bf4a00c8e2
+  measurement:
+    proxy_metric_id: objective_success_rate
+    success_criterion: Later file saves during a known write failure leave no tracked file at zero bytes and no failed in-place save is retried, and every rebuild is verified against its source of truth before the next append.
+    window_days: 30
+  needs_review: false
+  rationale: 'The nightly spending run on 19 Nov found 2 new spendings, the dashboard took them, but the Excel save was blocked by a sandbox write block, and the assistant retried the save once anyway and the failed save emptied both the Excel and the seen-ids file to 0 bytes (message:18b43c93-ded9-36d5-97ce-4ea526f45ac6). The file was rebuilt from the dashboard and verified the next morning with all 118 records restored (message:9ab8fa8d-bb1f-410b-a3eb-551f24e21692). The write-block mechanism was traced to writes failing with EPERM while opens succeed, with every block ending only at a VM reset, and 10 blocks occurred in about a day (messages cb795696-ada4-466b-8fab-08c7cec9e83d and b3174eee-1a44-3a04-510d-48bf4a00c8e2), so the same destructive retry can recur in any scheduled job that saves a file. Skill search found no skill covering safe saves, flush plus fsync plus read-back verification, or rebuild from a source of truth, and the managed long_running_loop_supervision skill covers resume without overwriting finished output but not failed-save handling, so a new narrow skill teaches the missing method instead of layering on a skill still inside its measurement window. The other candidates were rejected: Cook critic variance moved scores on unchanged pixels for 11 to 14 rounds but offers no distinct reusable save or verification method, the Outlook 9th consecutive block is already partly mitigated by the agent no longer raising new approval cards and the scheduler pausing blocked jobs, and the goals_bookkeeping rollup and handoff-suppression counts name no concrete method failure.'
+  review_after: 2026-12-20T06:19:56.289624+00:00
+  reviewed_at: 2026-11-20T06:19:56.289624+00:00
+  run_id: sirun_eb1031bca44e4e459eb8ea3cd529624d

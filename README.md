@@ -25,3 +25,21 @@ When a method, channel, or approach is stopped or retired in chat, propagate
 the decision into the scheduled jobs and runbooks that still carry it out —
 pause or rewrite the job definition, not just the next reply — so no stale
 job keeps running the old routine.
+
+### long_running_loop_supervision
+Keep a multi-round delegated loop moving until it ships by checking it
+yourself, spotting a stall early, and resuming it from disk without
+rebuilding or overwriting finished work.
+
+### safe_file_saves
+Save a file so a failed write cannot empty or corrupt it, and recover from
+the source of truth when a save fails. Test the write first (flush + fsync +
+read-back), never retry a failed save in place, rebuild from the source of
+truth and verify the record count before appending again.
+
+### verify_delegated_results_before_reporting
+Check a delegated agent's claimed counts, scores, or completion against the
+files on disk before repeating them to the user. A pass total, a score, or a
+completion claim is unproven until the named output file shows it — open the
+file, confirm it exists and is not zero bytes, and match the number inside
+it before reporting it.

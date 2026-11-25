@@ -1,0 +1,20 @@
+name: verify_delegated_results_before_reporting
+title: Verify Delegated Results Before Reporting
+description: Check a delegated agent's claimed counts, scores, or completion against the files on disk before you repeat them to the user.
+category: Work and knowledge
+include_in_prompt: false
+skill_improvement:
+  managed: true
+  status: active
+  evidence_handles:
+  - message:assistant-msg-807a2566-345b-7cb3-1304-1aecb0abae53
+  - message:assistant-msg-0ed26e87-063f-be1f-79fd-ff3c0ef9c129
+  measurement:
+    proxy_metric_id: objective_success_rate
+    success_criterion: Later delegated results are reported to the user only after the named output files on disk show the claimed numbers, with no user correction for a repeated unverified pass total, score, or completion claim.
+    window_days: 30
+  rationale: 'The Round 92 builder claimed 376 measure passes and the assistant repeated that number to the user (message:assistant-msg-807a2566-345b-7cb3-1304-1aecb0abae53), then corrected it the same turn because the measure file was 0 bytes, no smoke or probe outputs existed, and the run had crashed with a TypeError at the Round 92 item 1 check (message:assistant-msg-0ed26e87-063f-be1f-79fd-ff3c0ef9c129). The alignment record shows the same claim before verify pattern with a wrong Round 77 mean and a done claim made before a browser check. I read the current long_running_loop_supervision and safe_file_saves skills: the first covers claiming a repair and checking that output exists, the second covers verifying a file write, and neither requires matching a claimed pass total or score to the contents of the named output file, and skill search found no skill covering that check. A new narrow skill teaches it instead of layering onto long_running_loop_supervision, which is still inside its measurement window until 2026-12-21. Rejected candidates: the write block exec and read failures are already covered by safe_file_saves, the Outlook blocks need a user approval action rather than a teachable method, the stop order half execution is already covered by scheduled_job_decision_propagation and was fixed the same turn, and the handoff suppression and goals bookkeeping rollups name no concrete method failure.'
+  needs_review: false
+  review_after: 2026-12-22T06:27:22.606789+00:00
+  reviewed_at: 2026-11-22T06:27:22.606789+00:00
+  run_id: sirun_222c78e50ccc44a8980cd48f5bd5a8e0
